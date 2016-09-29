@@ -2,10 +2,10 @@ const http  = require ('http');
 const https = require ('https');
 const fs    = require ('fs');
 
-const data2040  = {
+const data2040  = querystring.stringify({
   "token": "0217347fbdb52f16ea562bd939c1620a",
   "github": "https://github.com/ArtBears/code2040app"
-}
+});
 
 const options = {
   hostname: 'challenge.code2040.org',
