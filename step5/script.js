@@ -47,18 +47,28 @@ let promise = new Promise((resolve, reject) => {
 // iterate over dictionary
 let find_date = (datestamp, interval) => {
   // turn the interval into milliseconds
-  interval = interval * 1000;
-
+  interval_in_milliseconds = Number.parseFloat(interval) * 1000;
+  console.log(interval_in_milliseconds);
+  let date = new Date(datestamp);
+  console.log(date.getTime());
+  console.log(date);
+  let date_in_milliseconds = Date.parse(date);
+  console.log(date_in_milliseconds);
+  let combined_date = new Date(date_in_milliseconds + interval_in_milliseconds);
+  let combined_date_string = combined_date.toISOString();
+  combined_date_string = combined_date_string.replace(".000", "");
+  console.log(combined_date_string);
+  return combined_date_string;
 }
 
 promise.then((val) => {
-   let datestamp_and_timestamp = JSON.parse(val);
-   let datestamp = date_and_timestamp.datestamp;
-   let interval = date_and_timestamp.interval;
-   let new_date = date_and_timestamp(prefix, array);
+   let datestamp_and_interval = JSON.parse(val);
+   let datestamp = datestamp_and_interval.datestamp;
+   let interval = datestamp_and_interval.interval;
+   let new_date = find_date(datestamp, interval);
    let data_to_send = {
     token: "0217347fbdb52f16ea562bd939c1620a",
-    array: new_date
+    datestamp: new_date
   }
   string_response(validate_endpoint, data_to_send);
 
