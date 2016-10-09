@@ -1,6 +1,6 @@
 // The current projects Endpoint
 let endpoint =  "/api/dating"
-let validate_endpoint = "/api/prefix/validate"
+let validate_endpoint = "/api/dating/validate"
 
 // The data to send in the current request
 let token_to_send = {
@@ -45,27 +45,20 @@ let promise = new Promise((resolve, reject) => {
 });
 
 // iterate over dictionary
-let find_prefix = (prefix, array) => {
-  // find the prefix length
-    prefix_length = prefix.length; 
-  // use the prefix length as the substring end
-  for(let i = 0; i < array.length; i++){
-    if(prefix === array[i].substring(0, prefix_length)){
-      array.splice(i,1);
-      --i;
-    }
-  }
-  return array;
+let find_date = (datestamp, interval) => {
+  // turn the interval into milliseconds
+  interval = interval * 1000;
+
 }
 
 promise.then((val) => {
-  let prefix_and_array = JSON.parse(val);
-  let prefix = prefix_and_array.prefix;
-  let array = prefix_and_array.array;
-  let spliced_array = find_prefix(prefix, array);
-  let data_to_send = {
-  token: "0217347fbdb52f16ea562bd939c1620a",
-  array: spliced_array
+   let datestamp_and_timestamp = JSON.parse(val);
+   let datestamp = date_and_timestamp.datestamp;
+   let interval = date_and_timestamp.interval;
+   let new_date = date_and_timestamp(prefix, array);
+   let data_to_send = {
+    token: "0217347fbdb52f16ea562bd939c1620a",
+    array: new_date
   }
   string_response(validate_endpoint, data_to_send);
 
