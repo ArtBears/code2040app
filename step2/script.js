@@ -16,7 +16,7 @@ PROBLEM: REVERSE A STRING
             element to the first into+= a string.
     2. I could use the substring of the string 
         from the last letter to the first and append it into another stringopperations
-  I'm going with option #2
+  I'm going with option #1
 
 */
 let reverse = (str) => {
