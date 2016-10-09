@@ -10,7 +10,7 @@ let token_to_send = {
 // The post response with the reversed string
 let string_response = (endpoint, payload) => { 
   xhr = new XMLHttpRequest();
-  let url = "http://challenge.code2040.org/api/prefix/validate";
+  let url = "http://challenge.code2040.org" + endpoint;
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.onreadystatechange = function () { 
