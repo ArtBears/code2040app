@@ -1,11 +1,13 @@
 // The current projects Endpoint
-let endpoint =  "/api/register"
+let endpoint =  "/api/reverse"
+let validate_endpoint = "/api/reverse/validate"
 
 // The data to send in the current request
-let data_to_send = {
-    "token": "0217347fbdb52f16ea562bd939c1620a",
-    "github": "https://github.com/ArtBears/code2040app"
+let token_to_send = {
+    "token": "0217347fbdb52f16ea562bd939c1620a"
 }
+
+
 /*
 PROBLEM: REVERSE A STRING
   Several ways to do this: 
@@ -24,29 +26,61 @@ let reverse = (str) => {
   let return_str = "";
   /**/
   for(let i = arr_length; i >= 0; i-- ){
-    return_str  str[i];
+    return_str += str[i];
   }
   return return_str;
 }
 
-// The post request that I will send
-let request = (endpoint, payload) => { 
+// The post response with the reversed string
+let string_response = (endpoint, payload,) => { 
   xhr = new XMLHttpRequest();
   let url = "http://challenge.code2040.org" + endpoint;
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.onreadystatechange = function () { 
       if (xhr.readyState == 4 && xhr.status == 200) {
-          console.log(xhr.responseText);
+          console.log("Response: " + xhr.responseText);
           console.log("sent");
-          return xhr.responseText;
+          console.log(xhr.responseText);
+
       }
   }
   let data = JSON.stringify(payload);
   xhr.send(data);
 }
 
-//request(endpoint, data_to_send);
+// The post request that I will send
+let string_request = (endpoint, payload) => { 
+  xhr = new XMLHttpRequest();
+  let url = "http://challenge.code2040.org" + endpoint;
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  xhr.onreadystatechange = function () { 
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          console.log("Response: " + xhr.responseText);
+          console.log("sent");
+          return xhr.responseText;
+
+      }
+  }
+  let data = JSON.stringify(payload);
+  xhr.send(data);
+}
+
+let promise = new Promise((resolve, reject) => {
+  
+});
+
+
+let api_response = string_request(endpoint, token_to_send);
+// let reversed_api_response = reverse(api_response);
+console.log(typeof(api_response));
+// let data_to_send = {
+//   "token": "0217347fbdb52f16ea562bd939c1620a",
+//   "string": reversed_api_response
+// }
+
+// string_response(validate_endpoint, data_to_send);
 
 
 
